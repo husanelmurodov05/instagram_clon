@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:instagram_clom/pages/HomePage.dart';
 import 'package:instagram_clom/pages/SignUp.dart';
+import 'package:instagram_clom/services/util.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({super.key});
@@ -15,7 +16,18 @@ class _SignInState extends State<SignIn> {
   bool isVisable = true;
   TextEditingController emailController = TextEditingController();
   TextEditingController pasController = TextEditingController();
-  _signIn() {}
+  _signIn() {
+    String email = emailController.text.trim();
+    String parol = pasController.text.trim();
+    if (email.isEmpty || parol.isEmpty) {
+      Util.ToastMS(
+        "Enter completely!");
+      return;
+    }
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: ((context) => HomePage())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,8 +39,8 @@ class _SignInState extends State<SignIn> {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                Color(0xFFFCAF45),
-                Color(0xFFF56040),
+               Color.fromARGB(255, 27, 143, 186),
+              Color.fromARGB(255, 198, 9, 135),
               ])),
           child: Column(
             children: [
@@ -56,6 +68,7 @@ class _SignInState extends State<SignIn> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white.withOpacity(0.3)),
                       child: TextField(
+                        controller: emailController,
                         decoration: InputDecoration(
                             hintText: "Email",
                             border: InputBorder.none,
@@ -74,6 +87,7 @@ class _SignInState extends State<SignIn> {
                           color: Colors.white.withOpacity(0.3),
                           borderRadius: BorderRadius.circular(10)),
                       child: TextField(
+                        controller: pasController,
                         obscureText: isVisable,
                         decoration: InputDecoration(
                             border: InputBorder.none,
@@ -100,10 +114,7 @@ class _SignInState extends State<SignIn> {
                         height: 45,
                         child: OutlinedButton(
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: ((context) => HomePage())));
+                              _signIn();
                             },
                             style: ButtonStyle(
                                 side: MaterialStatePropertyAll(BorderSide(

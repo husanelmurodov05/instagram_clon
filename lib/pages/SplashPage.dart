@@ -29,8 +29,8 @@ class _SplashPageState extends State<SplashPage> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-              Color(0xFFFCAF45),
-              Color(0xFFF56040),
+             Color.fromARGB(255, 27, 143, 186),
+              Color.fromARGB(255, 198, 9, 135),
             ])),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

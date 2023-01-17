@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UpploadPage extends StatefulWidget {
-  const UpploadPage({super.key});
+  PageController? pageController;
+  UpploadPage({this.pageController, super.key});
 
   @override
   State<UpploadPage> createState() => _UpploadPageState();
@@ -62,22 +63,27 @@ class _UpploadPageState extends State<UpploadPage> {
         resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         appBar: AppBar(
+          toolbarHeight: 80,
           backgroundColor: Colors.white,
           elevation: 0,
           actions: [
             IconButton(
-                onPressed: () {},
-                icon: Icon(
+                onPressed: () {
+                  widget.pageController!.animateTo(0,
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.linear);
+                },
+                icon: const Icon(
                   Icons.add_photo_alternate_outlined,
                   color: Colors.black,
                   size: 27,
                 ))
           ],
           centerTitle: true,
-          title: Text(
+          title: const Text(
             "Upload",
             style: TextStyle(
-                fontSize: 24,
+                fontSize: 30,
                 color: Colors.black,
                 fontFamily: "Billabong",
                 fontWeight: FontWeight.bold),
@@ -90,21 +96,59 @@ class _UpploadPageState extends State<UpploadPage> {
                 onTap: () {
                   showPic();
                 },
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.width,
-                  color: Colors.grey,
-                  child: Center(
-                      child: Icon(
-                    Icons.add_a_photo,
-                    size: 50,
-                    color: Colors.black,
-                  )),
+                child: Stack(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.width,
+                      color: Colors.grey,
+                      child: image == null
+                          ? const Icon(
+                              Icons.add_a_photo,
+                              size: 50,
+                              color: Colors.black,
+                            )
+                          : Image(
+                              image: FileImage(
+                                image!,
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                    ),
+                    image != null
+                        ? Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  //radius: 50,
+                                  child: IconButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          image = null;
+                                        });
+                                      },
+                                      icon: Icon(
+                                        Icons.close,
+                                        //  size: 30,
+                                        color: Colors.red,
+                                      )),
+                                ),
+                              ],
+                            ),
+                          )
+                        : Container(),
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
+              const Padding(
+                padding: EdgeInsets.all(10.0),
                 child: TextField(
+                  keyboardType: TextInputType.multiline,
+                  minLines: 1,
+                  maxLength: 5,
                   decoration: InputDecoration(hintText: "Caption"),
                 ),
               )

@@ -11,21 +11,29 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController fullaname=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+ 
+
   bool isVisable = true;
   bool isVisable2 = true;
+  _signUp(){
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
           padding: EdgeInsets.all(20),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                Color(0xFFFCAF45),
-                Color(0xFFF56040),
+               Color.fromARGB(255, 27, 143, 186),
+              Color.fromARGB(255, 198, 9, 135),
               ])),
           child: Column(
             children: [
@@ -34,15 +42,15 @@ class _SignUpState extends State<SignUp> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Instgram",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 46,
                           fontFamily: "Billabong"),
                     ),
-                    SizedBox(
-                      height: 10,
+                    const SizedBox(
+                      height: 10,                  
                     ),
                     Container(
                       padding:
@@ -59,7 +67,7 @@ class _SignUpState extends State<SignUp> {
                             hintStyle: TextStyle(color: Colors.grey.shade300)),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -77,7 +85,7 @@ class _SignUpState extends State<SignUp> {
                             hintStyle: TextStyle(color: Colors.grey.shade300)),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -107,7 +115,7 @@ class _SignUpState extends State<SignUp> {
                             hintStyle: TextStyle(color: Colors.grey.shade300)),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -119,20 +127,25 @@ class _SignUpState extends State<SignUp> {
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white.withOpacity(0.3)),
                       child: TextField(
+                        obscureText: isVisable2,
                         decoration: InputDecoration(
                             hintText: "Confirm Password",
                             border: InputBorder.none,
                             suffixIcon: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                isVisable2 = !isVisable2;
+                              },
                               icon: Icon(
-                                Icons.visibility,
+                                isVisable2
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
                                 color: Colors.grey.shade300,
                               ),
                             ),
                             hintStyle: TextStyle(color: Colors.grey.shade300)),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     SizedBox(
@@ -144,14 +157,14 @@ class _SignUpState extends State<SignUp> {
                                 side: MaterialStatePropertyAll(BorderSide(
                                     color: Colors.grey.shade300
                                         .withOpacity(0.6)))),
-                            child: Text(
+                            child: const Text(
                               "SignUp",
                               style: TextStyle(color: Colors.white),
                             )))
                   ],
                 ),
               )),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(

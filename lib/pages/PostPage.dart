@@ -168,7 +168,7 @@ imageMenu(BuildContext context,String image_url){
                       Text(
                         "save Image",
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       )

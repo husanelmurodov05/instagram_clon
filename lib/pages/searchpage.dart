@@ -100,10 +100,10 @@ Widget _itemOfUser(String name) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "khurshidbek",
-                  style:
-                      TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                ),
+                    "husan_elmurodov",
+                    style:
+                        TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                  ),
                 Text("khurshid@gmail.com",style: TextStyle(color: Colors.grey),)
               ],
             ),

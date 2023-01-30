@@ -309,7 +309,7 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
               icon: const Icon(
               
                 EvaIcons.paperPlane,
-               color: Colors.black,
+               color: Colors.white,
                 size: 25,
               )),
         ],

@@ -58,32 +58,32 @@ class _LikePageState extends State<LikePage> {
               },
               icon: const Icon(
                 Icons.camera_alt_outlined,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Colors.white,
                 size: 30,
               ))
         ],
         elevation: 0.1,
-        backgroundColor: Color.fromARGB(255, 0, 0, 0),
+        backgroundColor: Colors.black,
         centerTitle: true,
         title: const Text(
           "Like",
           style: TextStyle(
               fontSize: 40,
               fontFamily: "Billabong",
-              color: Color.fromARGB(255, 255, 255, 255)),
+              color: Colors.white),
         ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-           Color.fromARGB(255, 27, 143, 186),
-              Color.fromARGB(255, 198, 9, 135),
-              ]),
+          color: Colors.black
+        //   gradient: LinearGradient(
+        //       begin: Alignment.topRight,
+        //       end: Alignment.bottomLeft,
+        //       colors: [
+        // Colors
+        //       ]),
         ),
         child: ListView.separated(
           itemBuilder: (context, index) =>
@@ -124,7 +124,7 @@ imageMenu(BuildContext context,String image_url){
                 width: 130,
                 height: 5,
                 decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Colors.black,
                     borderRadius: BorderRadius.circular(50)),
               ),
               SizedBox(
@@ -133,6 +133,7 @@ imageMenu(BuildContext context,String image_url){
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+
                  
                   Column(
                     children: [
@@ -150,7 +151,7 @@ imageMenu(BuildContext context,String image_url){
                           ),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: Colors.black,
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Icon(
@@ -299,7 +300,7 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
           SizedBox(
             width: 5,
           ),
-          LikeButton(
+          LikeButton( 
             size: 30,
           ),
           IconButton(
@@ -308,9 +309,9 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
               icon: const Icon(
               
                 EvaIcons.paperPlane,
-               color: Colors.white,
+               color: Colors.black,
                 size: 25,
-              ))
+              )),
         ],
       ),
       Padding(
@@ -319,7 +320,7 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
           caption,
           style: const TextStyle(
             fontSize: 16,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
       ),

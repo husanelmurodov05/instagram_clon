@@ -11,20 +11,22 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   TextEditingController searchController = TextEditingController();
-  List items = ["Husaan", "Elmurodov"];
+  List items = ["", "", "", "", "", "", "", "", ""];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+     
+        backgroundColor: Colors.black,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          
+          backgroundColor: Colors.black,
           toolbarHeight: 100,
           elevation: 0,
           centerTitle: true,
           title: Text(
             "Search",
             style: TextStyle(
-                color: Colors.black,
+                color: Colors.white,
                 fontFamily: "Billabong",
                 fontSize: 30,
                 fontWeight: FontWeight.bold),
@@ -34,30 +36,27 @@ class _SearchState extends State<Search> {
           padding: EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: [
-              InkWell(
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: TextField(
-                    style: TextStyle(color: Colors.black87),
-                    controller: searchController,
-                    onChanged: (input) {
-                      print(input);
-                    },
-                    decoration: InputDecoration(
-                        hintText: "Search",
-                        border: InputBorder.none,
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.grey,
-                        ),
-                        hintStyle:
-                            TextStyle(fontSize: 15.0, color: Colors.grey)),
-                  ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: 45,
+                decoration: BoxDecoration(
+                  color: Colors.grey.withOpacity(0.2),
+                  borderRadius: BorderRadius.circular(7),
+                ),
+                child: TextField(
+                  style: TextStyle(color: Colors.black87),
+                  controller: searchController,
+                  onChanged: (input) {
+                    print(input);
+                  },
+                  decoration: InputDecoration(
+                      hintText: "Search",
+                      border: InputBorder.none,
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                      hintStyle: TextStyle(fontSize: 15.0, color: Colors.grey)),
                 ),
               ),
               Expanded(
@@ -95,26 +94,37 @@ Widget _itemOfUser(String name) {
             SizedBox(
               width: 15,
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
                     "husan_elmurodov",
-                    style:
-                        TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                Text("khurshid@gmail.com",style: TextStyle(color: Colors.grey),)
-              ],
+                  Text(
+                    "husan07@gmail.com",
+                    style: TextStyle(color: Colors.grey),
+                  )
+                ],
+              ),
             ),
             SizedBox(
-              width: 48                                ,
+              width: 48,
             ),
-        OutlinedButton(onPressed: (){}, child: Text("Follow",style: TextStyle(color: Colors.grey),)),
-        
+            OutlinedButton(
+                onPressed: () {},
+                style: ButtonStyle(
+                    side: MaterialStatePropertyAll(
+                        BorderSide(color: Colors.white))),
+                child: Text(
+                  "Follow",
+                  style: TextStyle(color: Colors.blue),
+                )),
           ],
         ),
-        
       ],
     ),
   );

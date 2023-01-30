@@ -31,6 +31,8 @@ class _HomePageState extends State<HomePage> {
             }),
             currentIndex: _hozitgiIndex,
             activeColor: Color(0xFFFF56040),
+            backgroundColor: Colors.black,
+            inactiveColor: Colors.white,
             items: [
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),

@@ -1,7 +1,7 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clom/pages/uploadpage.dart';
 import 'package:like_button/like_button.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:gallery_saver/gallery_saver.dart';
@@ -20,9 +20,12 @@ class _PostPageState extends State<PostPage> {
 
   final String _image_url1 =
       "https://images.unsplash.com/photo-1496523720220-b62e33cf3161?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80";
-  final String _image_url2="https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519__340.jpg";
-         final String _image_url3="https://i.ytimg.com/vi/dip_8dmrcaU/maxresdefault.jpg";
-         final String _image_url4="https://assets.architecturaldigest.in/photos/60083e76274aca243711c3a4/16:9/w_2560%2Cc_limit/ghaziabad-uttar-pradesh-homes-photos-1366x768.jpg";
+  final String _image_url2 =
+      "https://cdn.pixabay.com/photo/2017/10/25/16/54/african-lion-2888519__340.jpg";
+  final String _image_url3 =
+      "https://i.ytimg.com/vi/dip_8dmrcaU/maxresdefault.jpg";
+  final String _image_url4 =
+      "https://assets.architecturaldigest.in/photos/60083e76274aca243711c3a4/16:9/w_2560%2Cc_limit/ghaziabad-uttar-pradesh-homes-photos-1366x768.jpg";
   @override
   void initState() {
     // TODO: implement initState
@@ -32,11 +35,14 @@ class _PostPageState extends State<PostPage> {
       Post(_image_url1, "Ajoyib bahor fasli daxshat"),
     );
     posts.add(
-      Post(_image_url2, "Buncha chiroyli sher"),
+      Post(
+        _image_url2,
+        "Buncha chiroyli sher",
+      ),
     );
     posts.add(
       Post(_image_url3, "Dunyoning qimmat mashinalari"),
-    ); 
+    );
     posts.add(
       Post(_image_url4, "Uyga gap yo'q"),
     );
@@ -46,25 +52,26 @@ class _PostPageState extends State<PostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+      
         toolbarHeight: 80,
         actions: [
           IconButton(
               onPressed: () {
+                
                 widget.pageController!.animateToPage(
                   2,
                   duration: Duration(milliseconds: 200),
                   curve: Curves.linear,
                 );
-              
               },
               icon: const Icon(
                 Icons.camera_alt_outlined,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Color.fromARGB(255, 0, 0, 0),
                 size: 30,
               ))
         ],
         elevation: 0.1,
-        backgroundColor: Color.fromARGB(255, 21, 1, 1),
+        backgroundColor: Colors.white,
         centerTitle: true,
         title: const Text(
           "Instagram",
@@ -72,24 +79,24 @@ class _PostPageState extends State<PostPage> {
               fontSize: 40,
               fontWeight: FontWeight.bold,
               fontFamily: "Billabong",
-              color: Color.fromARGB(255, 238, 228, 228)),
+              color: Color.fromARGB(255, 5, 0, 0)),
         ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-            Color.fromARGB(255, 27, 143, 186),
-              Color.fromARGB(255, 198, 9, 135),
-              ]),
+          color: Colors.white,
+          // gradient: LinearGradient(
+          //     begin: Alignment.topRight,
+          //     end: Alignment.bottomLeft,
+          //     colors: [
+          // Colors.white
+          //     ]),
         ),
         child: ListView.separated(
-          itemBuilder: (context, index) =>
-              _itemPost(context, posts[index].image_url!, posts[index].caption!),
+          itemBuilder: (context, index) => _itemPost(
+              context, posts[index].image_url!, posts[index].caption!),
           separatorBuilder: (context, index) => const Divider(
             thickness: 0.8,
           ),
@@ -100,13 +107,13 @@ class _PostPageState extends State<PostPage> {
   }
 }
 
-void saveimage(String image_url) async{
+void saveimage(String image_url) async {
   print(image_url);
- await GallerySaver.saveImage("https://image.shutterstock.com/image-photo/montreal-canada-july-11-2019-600w-1450023539.jpg");
+  await GallerySaver.saveImage(
+      "https://image.shutterstock.com/image-photo/montreal-canada-july-11-2019-600w-1450023539.jpg");
 }
 
-
-imageMenu(BuildContext context,String image_url){
+imageMenu(BuildContext context, String image_url) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(32))),
@@ -114,7 +121,7 @@ imageMenu(BuildContext context,String image_url){
     builder: ((context) => Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Colors.black,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -135,7 +142,6 @@ imageMenu(BuildContext context,String image_url){
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                 
                   Column(
                     children: [
                       InkWell(
@@ -152,7 +158,7 @@ imageMenu(BuildContext context,String image_url){
                           ),
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 0, 0, 0),
+                              color: Colors.black,
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Icon(
@@ -168,7 +174,7 @@ imageMenu(BuildContext context,String image_url){
                       Text(
                         "save Image",
                         style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 15),
                       )
@@ -189,7 +195,7 @@ imageMenu(BuildContext context,String image_url){
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Colors.black,
                             borderRadius: BorderRadius.circular(50),
                           ),
                           child: Icon(
@@ -222,7 +228,6 @@ imageMenu(BuildContext context,String image_url){
   );
 }
 
-
 Widget _itemPost(BuildContext context, String imgUrl, String caption) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -246,14 +251,14 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
                 Text(
                   "User Name",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 15,
                       fontWeight: FontWeight.w600),
                 ),
                 Text(
                   "11-yanvar 2023",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 14,
                   ),
                 ),
@@ -265,12 +270,12 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
             const Spacer(),
             IconButton(
                 onPressed: () {
-                  imageMenu(context,imgUrl);
+                  imageMenu(context, imgUrl);
                 },
                 icon: const Icon(
                   EvaIcons.moreHorizontal,
                   size: 30,
-                  color: Colors.white,
+                  color: Colors.black,
                 ))
           ],
         ),
@@ -309,7 +314,7 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
               onPressed: () {},
               icon: const Icon(
                 EvaIcons.paperPlane,
-                color: Colors.white,
+                color: Colors.black,
                 size: 25,
               ))
         ],
@@ -318,10 +323,7 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Text(
           caption,
-          style: const TextStyle(
-            fontSize: 16,
-            color: Colors.white,
-          ),
+          style: const TextStyle(fontSize: 16, color: Colors.black),
         ),
       ),
       SizedBox(

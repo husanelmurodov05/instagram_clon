@@ -151,7 +151,12 @@ class _UpploadPageState extends State<UpploadPage> {
                   maxLength: 5,
                   decoration: InputDecoration(hintText: "Caption"),
                 ),
-              )
+              ),
+              Image(
+                width: 200,
+                height: 200,
+                fit: BoxFit.cover,
+                image: AssetImage("assets/images/galley.jpg"))
             ],
           ),
         ));

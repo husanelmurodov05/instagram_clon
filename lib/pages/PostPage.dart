@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:instagram_clom/pages/AccaountPage.dart';
 import 'package:instagram_clom/pages/uploadpage.dart';
 import 'package:like_button/like_button.dart';
 import 'package:shimmer/shimmer.dart';
@@ -52,23 +53,44 @@ class _PostPageState extends State<PostPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      
         toolbarHeight: 80,
+        leading: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: (IconButton(
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: ((context) => Account())));
+              },
+              icon: Icon(
+                Icons.person,
+                size: 30,
+                color: Colors.black,
+              ))),
+        ),
         actions: [
           IconButton(
-              onPressed: () {
-                
-                widget.pageController!.animateToPage(
-                  2,
-                  duration: Duration(milliseconds: 200),
-                  curve: Curves.linear,
-                );
-              },
-              icon: const Icon(
-                Icons.camera_alt_outlined,
-                color: Color.fromARGB(255, 0, 0, 0),
-                size: 30,
-              ))
+              onPressed: () {},
+              icon: Icon(
+                Icons.telegram,
+                size: 40,
+                color: Colors.black,
+              )),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: IconButton(
+                onPressed: () {
+                  widget.pageController!.animateToPage(
+                    2,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.linear,
+                  );
+                },
+                icon: const Icon(
+                  Icons.camera_alt_outlined,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                  size: 30,
+                )),
+          )
         ],
         elevation: 0.1,
         backgroundColor: Colors.white,

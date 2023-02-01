@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +45,16 @@ class _LikePageState extends State<LikePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: (IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.notifications_none_sharp,
+                size: 35,
+                color: Colors.white,
+              ))),
+        ),
         toolbarHeight: 100,
         actions: [
           IconButton(
@@ -68,26 +77,23 @@ class _LikePageState extends State<LikePage> {
         title: const Text(
           "Like",
           style: TextStyle(
-              fontSize: 40,
-              fontFamily: "Billabong",
-              color: Colors.white),
+              fontSize: 40, fontFamily: "Billabong", color: Colors.white),
         ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          color: Colors.black
-        //   gradient: LinearGradient(
-        //       begin: Alignment.topRight,
-        //       end: Alignment.bottomLeft,
-        //       colors: [
-        // Colors
-        //       ]),
-        ),
+        decoration: BoxDecoration(color: Colors.black
+            //   gradient: LinearGradient(
+            //       begin: Alignment.topRight,
+            //       end: Alignment.bottomLeft,
+            //       colors: [
+            // Colors
+            //       ]),
+            ),
         child: ListView.separated(
-          itemBuilder: (context, index) =>
-              _itemPost(context, posts[index].image_url!, posts[index].caption!),
+          itemBuilder: (context, index) => _itemPost(
+              context, posts[index].image_url!, posts[index].caption!),
           separatorBuilder: (context, index) => const Divider(
             thickness: 0.8,
           ),
@@ -98,13 +104,13 @@ class _LikePageState extends State<LikePage> {
   }
 }
 
-void saveimage(String image_url) async{
+void saveimage(String image_url) async {
   print(image_url);
- await GallerySaver.saveImage("https://image.shutterstock.com/image-photo/montreal-canada-july-11-2019-600w-1450023539.jpg");
+  await GallerySaver.saveImage(
+      "https://image.shutterstock.com/image-photo/montreal-canada-july-11-2019-600w-1450023539.jpg");
 }
 
-
-imageMenu(BuildContext context,String image_url){
+imageMenu(BuildContext context, String image_url) {
   showModalBottomSheet(
     shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(32))),
@@ -133,8 +139,6 @@ imageMenu(BuildContext context,String image_url){
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-
-                 
                   Column(
                     children: [
                       InkWell(
@@ -221,7 +225,6 @@ imageMenu(BuildContext context,String image_url){
   );
 }
 
-
 Widget _itemPost(BuildContext context, String imgUrl, String caption) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -264,7 +267,7 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
             const Spacer(),
             IconButton(
                 onPressed: () {
-                  imageMenu(context,imgUrl);
+                  imageMenu(context, imgUrl);
                 },
                 icon: const Icon(
                   EvaIcons.moreHorizontal,
@@ -300,16 +303,15 @@ Widget _itemPost(BuildContext context, String imgUrl, String caption) {
           SizedBox(
             width: 5,
           ),
-          LikeButton( 
+          LikeButton(
             size: 30,
           ),
           IconButton(
               padding: EdgeInsets.zero,
               onPressed: () {},
               icon: const Icon(
-              
                 EvaIcons.paperPlane,
-               color: Colors.white,
+                color: Colors.white,
                 size: 25,
               )),
         ],

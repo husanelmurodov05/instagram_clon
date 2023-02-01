@@ -89,13 +89,41 @@ class _ProfilPageState extends State<ProfilPage> {
             )));
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+          endDrawer: Menu(context),
+          key: _scaffoldKey,
           backgroundColor: Colors.white,
           appBar: AppBar(
+            // leading: (
+             
+            // ),
+            actions: [
+              SizedBox(
+                width: 30,
+                height: 30,
+                child: InkWell(
+                  child: Image(
+                   // fit: BoxFit.cover,
+                   color: Colors.black,
+                    image: AssetImage("assets/images/messenger.png")),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    onPressed: () => _scaffoldKey.currentState!.openEndDrawer(),
+                    icon: Icon(
+                      Icons.menu,
+                      color: Colors.black,
+                      size: 30,
+                    )),
+              )
+            ],
             backgroundColor: Colors.white,
             elevation: 0,
             toolbarHeight: 100,
@@ -111,49 +139,91 @@ class _ProfilPageState extends State<ProfilPage> {
           ),
           body: Column(
             children: [
-              Container(
-                child: Center(
-                  child: Stack(
-                    //crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: CircleAvatar(
-                          radius: 44,
-                          backgroundColor: Colors.purple,
-                          child: CircleAvatar(
-                              radius: 42,
-                              backgroundColor: Colors.white,
-                              child: image == null
-                                  ? CircleAvatar(
-                                      radius: 40,
-                                      backgroundImage: AssetImage(
-                                          "assets/images/profil.png"))
-                                  : CircleAvatar(
-                                      radius: 40,
-                                      backgroundImage: FileImage(image!))),
+              Row(
+                children: [
+                  Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: SizedBox(
+                        width: 100,
+                        height: 35,
+                        child: OutlinedButton(
+                            onPressed: () {},
+                            style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStatePropertyAll(Colors.blue)),
+                            child: Text(
+                              "Follow",
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: Container(
+                      child: Center(
+                        child: Stack(
+                          //crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: CircleAvatar(
+                                radius: 44,
+                                backgroundColor: Colors.purple,
+                                child: CircleAvatar(
+                                    radius: 42,
+                                    backgroundColor: Colors.white,
+                                    child: image == null
+                                        ? CircleAvatar(
+                                            radius: 40,
+                                            backgroundImage: AssetImage(
+                                                "assets/images/profil.png"))
+                                        : CircleAvatar(
+                                            radius: 40,
+                                            backgroundImage:
+                                                FileImage(image!))),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 85, top: 60),
+                              child: Container(
+                                width: 26,
+                                height: 26,
+                                child: IconButton(
+                                  padding: EdgeInsets.zero,
+                                  onPressed: () {
+                                    showPic();
+                                  },
+                                  icon: Icon(Icons.add),
+                                ),
+                                decoration: BoxDecoration(
+                                    color: Color.fromARGB(255, 54, 244, 238),
+                                    borderRadius: BorderRadius.circular(30)),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 85, top: 60),
-                        child: Container(
-                          width: 26,
-                          height: 26,
-                          child: IconButton(
-                            padding: EdgeInsets.zero,
-                           onPressed: (){
-                            showPic();
-                           },
-                           icon: Icon(Icons.add),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 54, 244, 238),
-                              borderRadius: BorderRadius.circular(30)),
-                        ),
-                      )
-                    ],
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  SizedBox(
+                    width: 100,
+                    height: 35,
+                    child: OutlinedButton(
+                        onPressed: () {},
+                        style: ButtonStyle(
+                            side: MaterialStatePropertyAll(BorderSide(
+                                color: Colors.grey.withOpacity(0.3)))),
+                        child: Text(
+                          "Message",
+                          style: TextStyle(),
+                        )),
+                  )
+                ],
               ),
               SizedBox(
                 height: 16.0,
@@ -358,6 +428,239 @@ Widget _itemOfPost2(BuildContext context, String imgUrl, String caption) {
         ),
         Text(caption),
       ],
+    ),
+  );
+}
+
+Widget Menu(context) {
+  return Drawer(
+    child: Container(
+      color: Colors.black,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, top: 120),
+            child: Text(
+              "husan_elmurodov",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icon1.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Archive",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icon2.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Your Activity",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icon3.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Nametag",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icon4.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Saved",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icon5.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Close Friends",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 40,
+                        height: 40,
+                        image: AssetImage("assets/images/shape.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Discover People",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icon6.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Open Facebook",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 90,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              children: [
+                InkWell(
+                    child: Image(
+                        width: 35,
+                        height: 35,
+                        image: AssetImage("assets/images/Icons7.png"))),
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Settings",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: 150,
+            height: 5,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          )
+        ],
+      ),
     ),
   );
 }
